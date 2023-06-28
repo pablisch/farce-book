@@ -1,6 +1,6 @@
 # Farcebook
 
-[Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Quickstart](#quickstart) | [Testing](#testing) | [Screenshots](#screenshots)
+ [Quick Start](#quick-start) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Installing](#installing-and-running-the-application) | [Testing](#testing) | [Screenshots](#screenshots)
 
 Makers Academy's second engineering project - A FaceBook clone.
 
@@ -26,6 +26,42 @@ From the Makers Academy brief:
 
 >In this project, you are tasked with working on an existing application. A significant part of the challenge will be to familiarise yourself with the codebase you've inherited, as you work to **improve and extend** it.
 
+## Quick Start
+
+This assumes that you have Node.js and MongoDB installed on your machine. If not, see the [Installing and Running the Application](#installing-and-running-the-application) section below.
+
+1. Clone this repository to your local machine.
+2. Start the MongoDB server, `mongod`.
+**Note:** If you see a message that says `If you need to have mongodb-community@6.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
+**Note:** If the server will not start, you may need to run `brew services start mongodb-community@6.0` in a new terminal window.
+3. ONLY if you wish to run tests, create the MongoDB test database and its collections (the main 'acebook' DB will be created automatically when the application is used):
+```
+mongosh
+use acebook_test
+db.createCollection("users")
+db.createCollection("posts")
+```
+4. You will need two terminal windows open, one for the frontend and one for the backend.
+5. For the backend:
+```
+# from the root directory of the project
+cd api
+# to install dependencies
+npm install
+# to start the backend server
+JWT_SECRET=SUPER_SECRET npm start
+```
+6. For the frontend:
+```
+# from the root directory of the project
+cd frontend
+# to install dependencies
+npm install
+# to start the frontend server
+npm start
+```
+7. Your browser should open the project at `http://localhost:3000/`.
+
 ## Architecture
 
 This application is comprised of two distinct pieces.
@@ -39,7 +75,7 @@ Currently, user password are stored in the DB in plaintext. In a real world impl
 
 ## Authentication
 
-[Top](#farcebook) | [The Brief](#the-brief) | [Architecture](#architecture) | [Card wall](#card-wall) | [Quickstart](#quickstart) | [Testing](#testing) | [Screenshots](#screenshots)
+[Top](#farcebook) | [The Brief](#the-brief) | [Quick Start](#quick-start) | [Architecture](#architecture) | [Card wall](#card-wall) | [Installing](#installing-and-running-the-application) | [Testing](#testing) | [Screenshots](#screenshots)
 
 The application uses JSON Web Tokens for authentication.
 
@@ -55,12 +91,13 @@ Our team trello board shows the tickets we worked through, and what was still in
 |![Team trello board 2](./tickets/trello-in-prod-2.png)|![Team trello board 3](./tickets/trello-in-prod-3.png)|
 
 
-## Quickstart
+## Installing and running the application
 
-[Top](#farcebook) | [The Brief](#the-brief) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Quickstart](#quickstart) | [Testing](#testing) | [Screenshots](#screenshots)
+[Top](#farcebook) | [The Brief](#the-brief) | [Quick Start](#quick-start) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Installing](#installing-and-running-the-application) | [Testing](#testing) | [Screenshots](#screenshots)
 
 ### Install Node.js
 
+For Mac:
 1. Install Node Version Manager (NVM)
    ```
    brew install nvm
@@ -71,65 +108,70 @@ Our team trello board shows the tickets we worked through, and what was still in
    ```
    nvm install 18
    ```
+For other operating systems, see the [Node.js website](https://nodejs.org/en/).
 
-### Set up your project
+### Set up the database
 
-1. Clone this repository to your local machine.
-2. cd into the project directory. You will need two terminal windows open, one for the frontend and one for the backend.
-3. For the backend:
-```bash
-cd api
-npm install
-; cd ../frontend
-; npm install
+1. Install MongoDB:
 ```
-4. For the frontend:
-```bash
-cd frontend
-npm install
-```
-5. In another terminal window, install MongoDB:
-```bash
 brew tap mongodb/brew
 brew install mongodb-community@6.0
 ```
 **Note:** If you see a message that says `If you need to have mongodb-community@6.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
-6. Start MongoDB
-```bash
+2. Start MongoDB
+```
 brew services start mongodb-community@6.0
 ```
-7. Create the MongoDB test database and its collections (the main 'acebook' DB will be created automatically when the application is used):
-```bash
+3. Create the MongoDB test database and its collections (the main 'acebook' DB will be created automatically when the application is used):
+```
 mongosh
 use acebook_test
 db.createCollection("users")
 db.createCollection("posts")
 ```
 
-### Start
-
-1. Start the server
+### Clone the repository, install dependencies and start the application
+1. Clone this repository to your local machine.
+2. cd into the project directory. You will need two terminal windows open, one for the frontend and one for the backend.
+3. For the backend:
 **Note the use of an environment variable for the JWT secret**
-```bash
+```
+# from the root directory of the project
 cd api
+# to install dependencies
+npm install
+# to start the backend server
 JWT_SECRET=SUPER_SECRET npm start
 ```
-2. Start the front end
-In a new terminal session...
-```bash
+4. For the frontend:
+```
+# from the root directory of the project
 cd frontend
+# to install dependencies
+npm install
+# to start the frontend server
 npm start
 ```
+5. Your browser should open the project at `http://localhost:3000/`.
 
-You should now be able to open your browser and go to `http://localhost:3000/signup` to create a new user, optionally uploading an avatar image.
-
-Then, after signing up, you should be able to log in by going to `http://localhost:3000/login`.
+You may register as a new user with an optional avatar and then log in.
 
 After logging in, you'll be able to create posts, like and comment.
 
 ### Testing
 
-[Top](#farcebook) | [The Brief](#the-brief) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Quickstart](#quickstart) | [Screenshots](#screenshots)
+[Top](#farcebook) | [The Brief](#the-brief) | [Quick Start](#quick-start) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Installing](#installing-and-running-the-application) | [Screenshots](#screenshots)
+
+1. For the backend:
+```
+cd api
+npm run test
+```
+2. For the frontend:
+```
+cd frontend
+npm run test
+```
 
 #### The Backend (API)
 
@@ -187,7 +229,7 @@ After logging in, you'll be able to create posts, like and comment.
 
 ## Screenshots
 
-[Top](#farcebook) | [The Brief](#the-brief) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Quickstart](#quickstart) | [Testing](#testing)
+[Top](#farcebook) | [The Brief](#the-brief) | [Quick Start](#quick-start) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Installing](#installing-and-running-the-application) | [Testing](#testing)
 
 Register a new user:
 
@@ -218,4 +260,4 @@ View the comment:
 <img src="screenshots/comment-added.png" alt="view comment" width="600" />
 
 
-[Top](#farcebook) | [The Brief](#the-brief) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Quickstart](#quickstart) | [Testing](#testing)
+[Top](#farcebook) | [The Brief](#the-brief) | [Quick Start](#quick-start) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Installing](#installing) | [Testing](#testing)
