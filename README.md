@@ -1,4 +1,7 @@
 # Farcebook
+
+[Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Quickstart](#quickstart) | [Testing](#testing) | [Screenshots](#screenshots)
+
 Makers Academy's second engineering project - A FaceBook clone.
 
 <p align="left">
@@ -36,6 +39,8 @@ Currently, user password are stored in the DB in plaintext. In a real world impl
 
 ## Authentication
 
+[Top](#farcebook) | [The Brief](#the-brief) | [Architecture](#architecture) | [Card wall](#card-wall) | [Quickstart](#quickstart) | [Testing](#testing) | [Screenshots](#screenshots)
+
 The application uses JSON Web Tokens for authentication.
 
 Here, we've used an environment variable called `JWT_SECRET`, which you'll see used in the commands to start the application and run the tests (below). You can change the value of that environment variable to anything you like.
@@ -52,6 +57,8 @@ Our team trello board shows the tickets we worked through, and what was still in
 
 ## Quickstart
 
+[Top](#farcebook) | [The Brief](#the-brief) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Quickstart](#quickstart) | [Testing](#testing) | [Screenshots](#screenshots)
+
 ### Install Node.js
 
 1. Install Node Version Manager (NVM)
@@ -67,50 +74,52 @@ Our team trello board shows the tickets we worked through, and what was still in
 
 ### Set up your project
 
-1. `git clone https://github.com/tomcarmichael/acebook-mern-water-team.git`
-2. 
-   ```
-   ; cd api
-   ; npm install
-   ; cd ../frontend
-   ; npm install
-   ```
-3. Install MongoDB
-   ```
-   brew tap mongodb/brew
-   brew install mongodb-community@5.0
-   ```
-   *Note:* If you see a message that says `If you need to have mongodb-community@5.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
-4. Start MongoDB
-   ```
-   brew services start mongodb-community@5.0
-   ```
-5. Create the MongoDB test database and its collections (the main 'acebook' DB will be created automatically when the application is used):
-   ```
-   mongosh
-   use acebook_test
-   db.createCollection("users")
-   db.createCollection("posts")
-   ```
+1. Clone this repository to your local machine.
+2. cd into the project directory. You will need two terminal windows open, one for the frontend and one for the backend.
+3. For the backend:
+```bash
+cd api
+npm install
+; cd ../frontend
+; npm install
+```
+4. For the frontend:
+```bash
+cd frontend
+npm install
+```
+5. In another terminal window, install MongoDB:
+```bash
+brew tap mongodb/brew
+brew install mongodb-community@6.0
+```
+**Note:** If you see a message that says `If you need to have mongodb-community@6.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
+6. Start MongoDB
+```bash
+brew services start mongodb-community@6.0
+```
+7. Create the MongoDB test database and its collections (the main 'acebook' DB will be created automatically when the application is used):
+```bash
+mongosh
+use acebook_test
+db.createCollection("users")
+db.createCollection("posts")
+```
 
 ### Start
 
 1. Start the server
-
-  **Note the use of an environment variable for the JWT secret**
-
-   ```
-   ; cd api
-   ; JWT_SECRET=SUPER_SECRET npm start
-   ```
+**Note the use of an environment variable for the JWT secret**
+```bash
+cd api
+JWT_SECRET=SUPER_SECRET npm start
+```
 2. Start the front end
-
-  In a new terminal session...
-
-  ```
-  ; cd frontend
-  ; npm start
-  ```
+In a new terminal session...
+```bash
+cd frontend
+npm start
+```
 
 You should now be able to open your browser and go to `http://localhost:3000/signup` to create a new user, optionally uploading an avatar image.
 
@@ -119,6 +128,8 @@ Then, after signing up, you should be able to log in by going to `http://localho
 After logging in, you'll be able to create posts, like and comment.
 
 ### Testing
+
+[Top](#farcebook) | [The Brief](#the-brief) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Quickstart](#quickstart) | [Screenshots](#screenshots)
 
 #### The Backend (API)
 
@@ -173,3 +184,38 @@ After logging in, you'll be able to create posts, like and comment.
   ; cd frontend
   ; JWT_SECRET=SUPER_SECRET npm run test:feature
   ```
+
+## Screenshots
+
+[Top](#farcebook) | [The Brief](#the-brief) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Quickstart](#quickstart) | [Testing](#testing)
+
+Register a new user:
+
+<img src="screenshots/register.png" alt="register" width="600" />
+
+Log in:
+
+<img src="screenshots/login.png" alt="login" width="600" />
+
+main page with posts:
+
+<img src="screenshots/homepage.png" alt="main page" width="600" />
+
+Create a post:
+
+<img src="screenshots/post-add.png" alt="create post" width="600" />
+
+View the added post:
+
+<img src="screenshots/post-added.png" alt="view post" width="600" />
+
+Make a comment:
+
+<img src="screenshots/comment-add.png" alt="comment" width="600" />
+
+View the comment:
+
+<img src="screenshots/comment-added.png" alt="view comment" width="600" />
+
+
+[Top](#farcebook) | [The Brief](#the-brief) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Quickstart](#quickstart) | [Testing](#testing)
