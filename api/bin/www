@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 // comment out the line below if there is no mongoUri.js file and a local database connection is being used
-const MONGODB_URL = require('../mongoUri')
+// const MONGODB_URL = require('../mongoUri')
 
 
 var app = require("../app");
