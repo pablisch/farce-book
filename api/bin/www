@@ -3,7 +3,8 @@
 /**
  * Module dependencies.
  */
-// comment out the line below if there is no .env file and a local database connection is being used
+// comment out the line below if there is no mongoUri.js file and a local database connection is being used
+const mongoURI = require('../mongoUri')
 
 
 var app = require("../app");
