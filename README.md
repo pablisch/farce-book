@@ -64,6 +64,8 @@ npm start
 
 ## Architecture
 
+[Top](#farcebook) | [The Brief](#the-brief) | [Quick Start](#quick-start) | [Authentication](#authentication) | [Card wall](#card-wall) | [Installing](#installing-and-running-the-application) | [Testing](#testing) | [Screenshots](#screenshots)
+
 This application is comprised of two distinct pieces.
 
 - A backend API built with Express
@@ -74,8 +76,6 @@ The React front end sends HTTP requests to the backend API and receives JSON in 
 Currently, user password are stored in the DB in plaintext. In a real world implementation of this application, we would of course have used a hashing alogirithm for this (a ticket we did not get time to implement during the project).
 
 ## Authentication
-
-[Top](#farcebook) | [The Brief](#the-brief) | [Quick Start](#quick-start) | [Architecture](#architecture) | [Card wall](#card-wall) | [Installing](#installing-and-running-the-application) | [Testing](#testing) | [Screenshots](#screenshots)
 
 The application uses JSON Web Tokens for authentication.
 
@@ -95,7 +95,7 @@ Our team trello board shows the tickets we worked through, and what was still in
 
 [Top](#farcebook) | [The Brief](#the-brief) | [Quick Start](#quick-start) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Installing](#installing-and-running-the-application) | [Testing](#testing) | [Screenshots](#screenshots)
 
-### Install Node.js
+#### Install Node.js
 
 For Mac:
 1. Install Node Version Manager (NVM)
@@ -110,7 +110,7 @@ For Mac:
    ```
 For other operating systems, see the [Node.js website](https://nodejs.org/en/).
 
-### Set up the database
+#### Set up the database
 
 1. Install MongoDB:
 ```
@@ -130,7 +130,7 @@ db.createCollection("users")
 db.createCollection("posts")
 ```
 
-### Clone the repository, install dependencies and start the application
+#### Clone the repository, install dependencies and start the application
 1. Clone this repository to your local machine.
 2. cd into the project directory. You will need two terminal windows open, one for the frontend and one for the backend.
 3. For the backend:
@@ -158,74 +158,57 @@ You may register as a new user with an optional avatar and then log in.
 
 After logging in, you'll be able to create posts, like and comment.
 
-### Testing
+## Testing
 
 [Top](#farcebook) | [The Brief](#the-brief) | [Quick Start](#quick-start) | [Architecture](#architecture) | [Authentication](#authentication) | [Card wall](#card-wall) | [Installing](#installing-and-running-the-application) | [Screenshots](#screenshots)
 
-1. For the backend:
-```
-cd api
-npm run test
-```
-2. For the frontend:
-```
-cd frontend
-npm run test
-```
-
-#### The Backend (API)
+#### Testing the Backend (API)
 
 **Note the use of an environment variable for the JWT secret**
 
-  Start the server in test mode (so that it connects to the test DB)
+Start the server in test mode (so that it connects to the test DB)
+```
+cd api
+JWT_SECRET=SUPER_SECRET npm run start:test
+```
 
-  ```
-  ; cd api
-  ; JWT_SECRET=SUPER_SECRET npm run start:test
-  ```
-
-  Then run the tests in a new terminal session
-
-  ```
-  ; cd api
-  ; JWT_SECRET=SUPER_SECRET npm run test
-  ```
+Then run the tests in a new terminal session:
+```
+cd api
+JWT_SECRET=SUPER_SECRET npm run test
+```
 
 #### The frontend (React)
 
 **Note the use of an environment variable for the JWT secret**
 
-  Start the backend server in test mode **as per above**
+Start the backend server in test mode **as per above**
 
-  Set the environment variable that allows Cypress to conect to your MongoDB instance running locally by copying the address of the server on which MongoDB is running e.g. 'mongodb://localhost:27017', and running the command `export MONGO_URI=[your_mongoDB_server_address]` (without the square brackets)
+Set the environment variable that allows Cypress to conect to your MongoDB instance running locally by copying the address of the server on which MongoDB is running e.g. 'mongodb://localhost:27017', and running the command `export MONGO_URI=[your_mongoDB_server_address]` (without the square brackets)
 
-  Then start the front end in a new terminal session
+Then start the front end in a second terminal session:
+```
+cd frontend
+JWT_SECRET=SUPER_SECRET npm start
+```
 
-  ```
-  ; cd frontend
-  ; JWT_SECRET=SUPER_SECRET npm start
-  ```
+Then, to run all Cypress tests in a new terminal session:
+```
+cd frontend
+JWT_SECRET=SUPER_SECRET npm run test
+```
 
-  Then, to run all Cypress tests in a new terminal session
+To run only the Cypress component tests:
+```
+cd frontend
+JWT_SECRET=SUPER_SECRET npm run test:unit
+```
 
-  ```
-  ; cd frontend
-  ; JWT_SECRET=SUPER_SECRET npm run test
-  ```
-
-  To run only the Cypress component tests
-
-  ```
-  ; cd frontend
-  ; JWT_SECRET=SUPER_SECRET npm run test:unit
-  ```
-
-  To run only the Cypress end to end tests
-
-  ```
-  ; cd frontend
-  ; JWT_SECRET=SUPER_SECRET npm run test:feature
-  ```
+To run only the Cypress end to end tests:
+```
+cd frontend
+JWT_SECRET=SUPER_SECRET npm run test:feature
+```
 
 ## Screenshots
 
