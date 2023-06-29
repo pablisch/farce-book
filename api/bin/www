@@ -3,6 +3,8 @@
 /**
  * Module dependencies.
  */
+// comment out the line below if there is no .env file and a local database connection is being used
+
 
 var app = require("../app");
 var debug = require("debug")("acebook:server");
