@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SignUpForm from '../user/SignUpForm'
 import "./LoginForm.css";
+const renderUrl = require('../../renderUrl');
 
 const LogInForm = ({ navigate }) => {
   const [username, setUsername] = useState("");
@@ -11,7 +12,7 @@ const LogInForm = ({ navigate }) => {
     event.preventDefault();
 
     // let response = await fetch('/tokens', {
-    let response = await fetch('https://farcebook-backend.onrender.com/tokens', {
+    let response = await fetch(`${renderUrl}/tokens`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Post from '../post/Post';
 import AddPost from '../AddPost/AddPost';
 import "./Feed.css";
+const renderUrl = require('../../renderUrl');
 
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
@@ -20,7 +21,7 @@ const Feed = ({ navigate }) => {
   useEffect(() => {
     if (token) {
       // fetch("/posts", {
-      fetch("https://farcebook-backend.onrender.com/posts", {
+      fetch(`${renderUrl}/posts`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
