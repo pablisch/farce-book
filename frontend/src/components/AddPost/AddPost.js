@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './AddPost.css';
+const renderUrl = require('../../renderUrl');
 
 const AddPost = ({ onPostAdded }) => { 
   console.log("component rendered")
@@ -11,7 +12,7 @@ const AddPost = ({ onPostAdded }) => {
 
       if (token) {
 
-        const response = await fetch('https://farcebook-backend.onrender.com/posts', {
+        const response = await fetch(`${renderUrl}/posts`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,

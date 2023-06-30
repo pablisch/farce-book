@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './AddComment.css';
+const renderUrl = require('../../renderUrl');
 
 const AddComment = ({ post, onPostAdded }) => {
   const [comment, setComment] = useState('');
@@ -9,7 +10,7 @@ const AddComment = ({ post, onPostAdded }) => {
     event.preventDefault();
 
       if (token) {
-        const response = await fetch(`/posts/${post._id}`, {
+        const response = await fetch(`${renderUrl}/posts/${post._id}`, {
           method: 'PATCH',
           headers: {
             'Authorization': `Bearer ${token}`,
