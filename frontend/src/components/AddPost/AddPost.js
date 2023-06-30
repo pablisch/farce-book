@@ -11,7 +11,7 @@ const AddPost = ({ onPostAdded }) => {
 
       if (token) {
 
-        const response = await fetch('/posts', {
+        const response = await fetch('https://farcebook-backend.onrender.com/posts', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
