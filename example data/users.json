@@ -1,0 +1,46 @@
+[{
+  "_id": {
+    "$oid": "6463a460cf310f44ab767412"
+  },
+  "email": "gollum@test.com",
+  "username": "gollum",
+  "password": "Password1",
+  "avatar": "https://miro.medium.com/v2/resize:fit:395/0*yt7Mwvdb8e08xxhk.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6463a4d6cf310f44ab76741d"
+  },
+  "email": "joker@test.com",
+  "username": "joker",
+  "password": "Password1",
+  "avatar": "https://static.fnac-static.com/multimedia/Images/FD/Comete/123455/CCP_IMG_1200x800/1608824.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64649b673bf3f11d233e63f3"
+  },
+  "email": "hugo@test.com",
+  "username": "hugo",
+  "password": "Password1",
+  "avatar": "https://statcdn.fandango.com/MPX/image/NBCU_Fandango/742/371/thumb_63910998-55B8-40DE-86F9-0B6D0BBC1646.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64653be4da67c61249f12b3a"
+  },
+  "email": "night@test.com",
+  "username": "night fury",
+  "password": "Password1",
+  "avatar": "https://www.dreamworks.com/images/temp/explore/dragons/toothless/profile.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "646614c8b01b332791835c8d"
+  },
+  "email": "pablo@test.com",
+  "username": "pablo",
+  "password": "Password1",
+  "avatar": "https://qph.cf2.quoracdn.net/main-qimg-b6ec4fa273636cfe2ec2537186a6e731-lq",
+  "__v": 0
+}]

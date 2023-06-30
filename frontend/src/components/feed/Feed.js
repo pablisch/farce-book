@@ -19,8 +19,8 @@ const Feed = ({ navigate }) => {
 
   useEffect(() => {
     if (token) {
-      // fetch("/posts", {
-      fetch("https://farcebook-backend.onrender.com/posts", {
+      fetch("/posts", {
+      // fetch("https://farcebook-backend.onrender.com/posts", {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -28,6 +28,7 @@ const Feed = ({ navigate }) => {
         .then(response => response.json())
         .then(async data => {
           window.localStorage.setItem("token", data.token)
+          console.log(data)
           setToken(window.localStorage.getItem("token"))
           data.posts.forEach((post) => {
             post.author = post.authorUserID.username
