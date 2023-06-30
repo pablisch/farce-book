@@ -14,7 +14,6 @@ const app = express();
 app.use(express.json())
 
 app.use(logger("dev"));
-app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Added CORS policy
@@ -24,7 +23,7 @@ app.use((req, res, next) => { // call the use method, which adds a middleware fu
   res.setHeader('Access-Control-Allow-Origin', 'https://farcebook-9uwa.onrender.com');
   // set the response header to allow the following headers
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization'); 
-  // res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS'); // set the response header to allow the following methods
+  // set the response header to allow the following methods
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   // call the next function which will be executed in the middleware stack
   next();
