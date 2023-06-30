@@ -20,8 +20,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use((req, res, next) => { // call the use method, which adds a middleware function to the middleware stack
   // set the response header to allow all origins
   res.setHeader('Access-Control-Allow-Origin', '*'); 
-  res.setHeader('Access-Control-Allow-Origin', 'https://farcebook-9uwa.onrender.com');
-  res.setHeader('Access-Control-Allow-Origin', 'https://farcebook-9uwa.onrender.com/');
+  // res.setHeader('Access-Control-Allow-Origin', 'https://farcebook-9uwa.onrender.com');
+  // res.setHeader('Access-Control-Allow-Origin', 'https://farcebook-9uwa.onrender.com/');
   // set the response header to allow the following headers
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization'); 
   // set the response header to allow the following methods
