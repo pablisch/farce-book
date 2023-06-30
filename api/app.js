@@ -16,7 +16,7 @@ app.use(express.json())
 app.use(logger("dev"));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Below is test code and is likely not needed
+// Below is code that made it possible to pass CORS policy when creating a post
 app.options('/posts', (req, res) => {
   // Set the appropriate CORS headers for the preflight request
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -25,6 +25,14 @@ app.options('/posts', (req, res) => {
   res.sendStatus(200); // Send a 200 OK response
 });
 
+// Below is code that made it possible to pass CORS policy when creating a message
+app.options('/posts/:id', (req, res) => {
+  // Set the appropriate CORS headers for the preflight request
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.sendStatus(200); // Send a 200 OK response
+});
 
 // Added CORS policy
 app.use((req, res, next) => { // call the use method, which adds a middleware function to the middleware stack
