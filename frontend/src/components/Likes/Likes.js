@@ -12,7 +12,7 @@ const Likes = ({ likes, parent }) => {
   const handleButtonClick = async (event) => {
     event.preventDefault();
     // todo: update this to `/posts/like_${parent.type}`
-      const response = await fetch('/posts/likes', {
+      const response = await fetch('https://farcebook-backend.onrender.com/posts/likes', {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,
