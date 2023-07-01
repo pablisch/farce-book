@@ -38,7 +38,8 @@ const Feed = ({ navigate }) => {
     }
   }, [postCount]);
   
-  if(token) {
+  if (token) {
+    console.log('token = ', token)
     return(
       <>
         <div className="add-posts">
