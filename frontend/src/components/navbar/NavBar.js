@@ -27,19 +27,17 @@ const Navbar = ({ navigate}) => {
     
   let contextButton;
   
-  if (token) {
-    contextButton = <div className="nav-item" onClick={logout}>
-      <a href="/login">Logout</a>
-        {/*/<Avatar alt="Remy Sharp" src= "" sx={{ width: 56, height: 56 }} />*/}
-
-    </div>
-    } else if (window.localStorage.getItem("app-route") === "login") {
+  if (window.localStorage.getItem("app-route") === "login") {
       contextButton = <div className="nav-item">
                         <a href="/signup">Sign up</a>
                       </div>
     } else if (window.localStorage.getItem("app-route") === "signup") {
       contextButton = <div className="nav-item">
                         <a href="/login">Login</a>
+                      </div>
+    } else {
+      contextButton = <div className="nav-item" onClick={logout}>
+                        <a href="/login">Logout</a>
                       </div>
     }
   
