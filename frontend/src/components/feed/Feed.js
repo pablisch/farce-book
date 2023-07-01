@@ -20,6 +20,7 @@ const Feed = ({ navigate }) => {
 
   useEffect(() => {
     if (token) {
+      console.log('token in fetch is ', token)
       // fetch("/posts", {
       fetch(`${renderUrl}/posts`, {
         headers: {
@@ -41,7 +42,8 @@ const Feed = ({ navigate }) => {
     }
   }, [postCount]);
   
-  if(token) {
+  if (token) {
+    console.log('token in return is ', token)
     return(
       <>
         <div className="add-posts">
@@ -56,7 +58,8 @@ const Feed = ({ navigate }) => {
       </>
     )
   } else {
-    navigate('/signin')
+    console.log('token is ', token)
+    navigate('/login')
   }
 }
 
