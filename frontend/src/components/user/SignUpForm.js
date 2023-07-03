@@ -7,6 +7,7 @@ const SignUpForm = ({ navigate }) => {
   const [avatar, setAvatar] = useState(null);
   const [errors, setErrors] = useState([]);
   window.localStorage.setItem("app-route", "signup")
+  const renderUrl = require('../../renderUrl');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,7 +22,7 @@ const SignUpForm = ({ navigate }) => {
       formData.append('avatar', avatar);
     }
 
-    fetch('/users', {
+    fetch(`${renderUrl}/users`, {
       method: 'POST',
       body: formData,
     })

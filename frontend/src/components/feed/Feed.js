@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Post from '../post/Post';
 import AddPost from '../AddPost/AddPost';
 import "./Feed.css";
+const renderUrl = require('../../renderUrl');
 
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
@@ -19,16 +20,19 @@ const Feed = ({ navigate }) => {
 
   useEffect(() => {
     if (token) {
-      // console.log('token in fetch is ', token);
-      fetch("/posts", {
+
+      console.log('token in fetch is ', token)
+      // fetch("/posts", {
+      fetch(`${renderUrl}/posts`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       })
         .then(response => response.json())
         .then(async data => {
-          window.localStorage.setItem("token", data.token);
-          setToken(data.token);
+          window.localStorage.setItem("token", data.token)
+          console.log(data)
+          setToken(window.localStorage.getItem("token"))
           data.posts.forEach((post) => {
             post.author = post.authorUserID.username;
             post.avatar = post.authorUserID.avatar;
@@ -43,11 +47,11 @@ const Feed = ({ navigate }) => {
     } else {
       navigate('/login');
     }
-  }, [token, postCount, navigate]);
-
+  }, [postCount]);
+  
   if (token) {
-    // console.log('token = ', token);
-    return (
+    console.log('token in return is ', token)
+    return(
       <>
         <div className="add-posts">
           <AddPost onPostAdded={handlePostAdded} />
@@ -58,7 +62,10 @@ const Feed = ({ navigate }) => {
           ))}
         </div>
       </>
-    );
+    )
+  } else {
+    console.log('token is ', token)
+    navigate('/login')
   }
 
   return null; // Render null when there is no token

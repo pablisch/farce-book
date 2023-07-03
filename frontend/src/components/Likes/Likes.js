@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import likedThumbsUp from '../../images/likedThumbsUp.png';
 import unLikedThumbsUp from '../../images/unlikedThumbsUp.png';
 import "./Likes.css";
+const renderUrl = require('../../renderUrl');
 
 const Likes = ({ likes, parent }) => {
 
@@ -12,7 +13,7 @@ const Likes = ({ likes, parent }) => {
   const handleButtonClick = async (event) => {
     event.preventDefault();
     // todo: update this to `/posts/like_${parent.type}`
-      const response = await fetch('/posts/likes', {
+      const response = await fetch(`${renderUrl}/posts/likes`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,
