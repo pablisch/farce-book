@@ -8,18 +8,19 @@ const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [postCount, setPostCount] = useState(0);
-  window.localStorage.setItem("app-route", "feed")
+  window.localStorage.setItem("app-route", "feed");
+
   const handlePostAdded = () => {
     setPostCount(prevCount => prevCount + 1); 
   };
 
-
-  function orderByDate (posts) {
-    return posts.sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt)).reverse()
+  function orderByDate(posts) {
+    return posts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).reverse();
   }
 
   useEffect(() => {
     if (token) {
+
       console.log('token in fetch is ', token)
       // fetch("/posts", {
       fetch(`${renderUrl}/posts`, {
@@ -33,12 +34,18 @@ const Feed = ({ navigate }) => {
           console.log(data)
           setToken(window.localStorage.getItem("token"))
           data.posts.forEach((post) => {
-            post.author = post.authorUserID.username
-            post.avatar = post.authorUserID.avatar
-            delete post.authorUserID
-          })
+            post.author = post.authorUserID.username;
+            post.avatar = post.authorUserID.avatar;
+            delete post.authorUserID;
+          });
           setPosts(orderByDate(data.posts));
         })
+        .catch(error => {
+          // Handle fetch error
+          console.error(error);
+        });
+    } else {
+      navigate('/login');
     }
   }, [postCount]);
   
@@ -47,13 +54,12 @@ const Feed = ({ navigate }) => {
     return(
       <>
         <div className="add-posts">
-          <AddPost onPostAdded={handlePostAdded}/>
+          <AddPost onPostAdded={handlePostAdded} />
         </div>
-        
         <div id='feed' role="feed">
-          {posts.map(
-            (post) => ( <Post post={ post } key={ post._id } onPostAdded={handlePostAdded} /> )
-          )}
+          {posts.map((post) => (
+            <Post post={post} key={post._id} onPostAdded={handlePostAdded} />
+          ))}
         </div>
       </>
     )
@@ -61,6 +67,8 @@ const Feed = ({ navigate }) => {
     console.log('token is ', token)
     navigate('/login')
   }
-}
+
+  return null; // Render null when there is no token
+};
 
 export default Feed;
