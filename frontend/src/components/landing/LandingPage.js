@@ -6,7 +6,7 @@ const LogInForm = ({ navigate }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isServerUp, setIsServerUp] = useState(false);
-  const expectedServerSpinUpTime = 10;
+  const expectedServerSpinUpTime = 90;
   const [counter, setCounter] = useState(expectedServerSpinUpTime);
   window.localStorage.setItem("app-route", "login")
 
@@ -31,6 +31,7 @@ const LogInForm = ({ navigate }) => {
     const intervalId = setInterval(() => {
       checkServerStatus(); // check server status every x seconds
       setCounter(counter => counter - 1)
+      console.log('time for server to spin up')
     }, 1000);
 
     if (isServerUp) {
@@ -93,14 +94,12 @@ const LogInForm = ({ navigate }) => {
       </div>
 
       {(!isServerUp && counter < (expectedServerSpinUpTime - 2)) && (<div className='login-form notice'>
-        
         {counter >= 0 ? 
           <p id='server-coutdown'>The server is expected to be up in around {counter <= 0 ? 0 : counter} seconds.</p> :
-          <p id='server-coutdown'>Currently waiting for server for {expectedServerSpinUpTime - counter} seconds</p>
-          
+          <p id='server-coutdown'>Currently waiting for server to spin up for {expectedServerSpinUpTime - counter} seconds</p>
         }
         <p>This App is currently deployed on a free tier of Render.com which is great but means the server spins down after 15 minutes of inactivity.</p>
-        <p>Please be patient while the server spins back up which is likely to take around a minute but can take even longer.</p>
+        <p>Please be patient while the server spins back up which is likely to take between 40 seconds and around two minutes.</p>
         <p>Feel free to browse another tab while this is happening.</p>
       </div>)}
       </>
