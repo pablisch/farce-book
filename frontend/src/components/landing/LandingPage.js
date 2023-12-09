@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./LoginForm.css";
+import "./LandingPage.css";
 const renderUrl = require('../../renderUrl');
 
 const LogInForm = ({ navigate }) => {
@@ -79,7 +79,10 @@ const LogInForm = ({ navigate }) => {
         <label htmlFor="password">Password: </label>
         <input placeholder='Password' id="password" type='password' value={password} onChange={handlePasswordChange} /> <br />
         <p id='error-message'></p>
-        <input role='submit-button' id='submit' type="submit" value="Submit" />
+        {isServerUp ?
+          (<input role='submit-button' id='submit' type="submit" value='Submit' />) :
+          (<input id='submit' type="" value='Waiting for server - Please be patient' />)}
+        {/* <input role='submit-button' id='submit' type="submit" value={isServerUp ? 'Submit' : 'Waiting for server'} /> */}
       </form>
     
     </div>
