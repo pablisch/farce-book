@@ -34,6 +34,15 @@ app.options('/posts/:id', (req, res) => {
   res.sendStatus(200); // Send a 200 OK response
 });
 
+// Below is code that made it possible to pass CORS policy when checking server status
+app.options('/health', (req, res) => {
+  // Set the appropriate CORS headers for the preflight request
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.sendStatus(200); // Send a 200 OK response
+});
+
 // Added CORS policy
 app.use((req, res, next) => { // call the use method, which adds a middleware function to the middleware stack
   // set the response header to allow all origins
@@ -75,6 +84,9 @@ const tokenChecker = (req, res, next) => {
 };
 
 // route setup
+app.get('/health', (req, res) => {
+  res.status(200).send('Server is up and running.');
+});
 app.use("/posts", tokenChecker, postsRouter);
 app.use("/tokens", tokensRouter);
 app.use("/users", usersRouter);

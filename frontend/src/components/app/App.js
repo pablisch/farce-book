@@ -1,7 +1,7 @@
 import './App.css';
 import LoginForm from '../auth/LoginForm'
+import LandingPage from '../landing/LandingPage'
 import SignUpForm from '../user/SignUpForm'
-import React, { useState } from 'react';
 import Feed from '../feed/Feed'
 import {
   useNavigate,
@@ -9,6 +9,7 @@ import {
   Route,
 } from "react-router-dom";
 import Navbar from '../navbar/NavBar';
+
 const App = () => {
     return (
       <>
@@ -17,7 +18,7 @@ const App = () => {
           <Routes>
             <Route path='/posts'  element={<Feed navigate={ useNavigate() }/>}/>
             <Route path='/login'  element={<LoginForm  navigate={ useNavigate() }/>}/>
-            <Route path='/'  element={<LoginForm  navigate={ useNavigate() }/>}/>
+            <Route path='/'  element={<LandingPage  navigate={ useNavigate() }/>}/>
             <Route path='/signup' element={<SignUpForm navigate={ useNavigate() }/>}/>
           </Routes>
         </div>
