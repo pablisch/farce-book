@@ -75,6 +75,9 @@ const tokenChecker = (req, res, next) => {
 };
 
 // route setup
+app.get('/health', (req, res) => {
+  res.status(200).send('Server is up and running.');
+});
 app.use("/posts", tokenChecker, postsRouter);
 app.use("/tokens", tokensRouter);
 app.use("/users", usersRouter);
