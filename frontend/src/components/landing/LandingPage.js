@@ -6,7 +6,8 @@ const LogInForm = ({ navigate }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isServerUp, setIsServerUp] = useState(false);
-  const [counter, setCounter] = useState(45);
+  const expectedServerSpinUpTime = 60;
+  const [counter, setCounter] = useState(expectedServerSpinUpTime);
   window.localStorage.setItem("app-route", "login")
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const LogInForm = ({ navigate }) => {
     // Optionally, you can set up an interval to periodically check the server status
     const intervalId = setInterval(() => {
       checkServerStatus(); // check server status every x seconds
-      setCounter(counter => counter > 0 ? counter - 1 : counter)
+      setCounter(counter => counter - 1)
     }, 1000);
 
     if (isServerUp) {
@@ -86,16 +87,16 @@ const LogInForm = ({ navigate }) => {
         <label htmlFor="password">Password: </label>
         <input placeholder='Password' id="password" type='password' value={password} onChange={handlePasswordChange} /> <br />
         <p id='error-message'></p>
-          {(isServerUp || counter > 44) && <input role='submit-button' id='submit' type="submit" value='Submit' />}
-          {/* {(!isServerUp && counter > 44) && <input role='submit-button' id='submit' type="submit" value='' />}  */}
-          {(!isServerUp && counter <= 44) && <input role='submit-button' id='submit' type="submit" value='Waiting for server - Please be patient' />}
+          {(isServerUp || counter > (expectedServerSpinUpTime - 1)) && <input role='submit-button' id='submit' type="submit" value='Submit' />}
+          {(!isServerUp && counter <= (expectedServerSpinUpTime - 1)) && <input role='submit-button' id='submit' type="submit" value='Waiting for server - Please be patient' />}
       </form>
       </div>
 
-      {(!isServerUp && counter < 43) && (<div className='login-form notice'>
-        <p id='server-coutdown'>The server is expected to be up in around {counter} seconds.</p>
+      {(!isServerUp && counter < (expectedServerSpinUpTime - 2)) && (<div className='login-form notice'>
+        <p id='server-coutdown'>The server is expected to be up in around {counter <= 0 ? 0 : counter} seconds.</p>
+        {counter < 0 && <p>Currently waiting for server for {expectedServerSpinUpTime - counter} seconds</p>}
         <p>This App is currently deployed on a free tier of Render.com which is great but means the server spins down after 15 minutes of inactivity.</p>
-        <p>Please be patient while the server spins back up which may take around a minute.</p>
+        <p>Please be patient while the server spins back up which is likely to take around a minute but can take even longer.</p>
         <p>Feel free to browse another tab while this is happening.</p>
       </div>)}
       </>
