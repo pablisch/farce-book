@@ -30,6 +30,10 @@ const LogInForm = ({ navigate }) => {
       checkServerStatus(); // check server status every x seconds
     }, 2000);
 
+    if (isServerUp) {
+      clearInterval(intervalId);
+    }
+
     return () => clearInterval(intervalId); // Clear interval when component unmounts
   }, []);
 
