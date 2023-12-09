@@ -11,6 +11,7 @@ const LogInForm = ({ navigate }) => {
   window.localStorage.setItem("app-route", "login")
 
   useEffect(() => {
+    console.log('Checking server status...');
     const checkServerStatus = async () => {
       try {
         const response = await fetch(`${renderUrl}/health`);
@@ -88,8 +89,8 @@ const LogInForm = ({ navigate }) => {
         <label htmlFor="password">Password: </label>
         <input placeholder='Password' id="password" type='password' value={password} onChange={handlePasswordChange} /> <br />
         <p id='error-message'></p>
-          {(isServerUp || counter > (expectedServerSpinUpTime - 1)) && <input role='submit-button' id='submit' type="submit" value='Submit' />}
-          {(!isServerUp && counter <= (expectedServerSpinUpTime - 1)) && <input role='submit-button' id='submit' type="submit" value='Waiting for server - Please be patient' />}
+          {(isServerUp || counter > (expectedServerSpinUpTime - 1)) && <input role='submit-button' className='submit' type="submit" value='Submit' />}
+          {(!isServerUp && counter <= (expectedServerSpinUpTime - 1)) && <input role='submit-button' className='submit waiting-for-server' type="submit" value='Waiting for the server - Please be patient' />}
       </form>
       </div>
 

@@ -25,15 +25,16 @@
   font-size: 1.2rem;
 }
 
-.login-form #submit {
+.login-form .submit {
   margin: 15px 0 10px; 
   font-weight: bold;
   color: #444;
   background-color: #fdd45a;
   text-align: center;
+  cursor: pointer;  
 }
 
-.login-form #submit:hover {
+.login-form .submit:hover {
   background-color: #1e5cbf;
   color: #fff;
 }
@@ -77,4 +78,16 @@
 #server-coutdown {
   font-weight: bold;
   margin-bottom: 20px;
+}
+
+.login-form .waiting-for-server {
+  color: #ffffff;
+  background-color: #626262;
+  font-size: 1rem;
+}
+
+.login-form .waiting-for-server:hover {
+  color: #ffffff;
+  background-color: #626262;
+  cursor: not-allowed;
 }
