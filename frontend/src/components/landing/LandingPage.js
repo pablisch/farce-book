@@ -10,6 +10,10 @@ const LogInForm = ({ navigate }) => {
   const [counter, setCounter] = useState(expectedServerSpinUpTime);
   window.localStorage.setItem("app-route", "login")
 
+  if (window.localStorage.getItem("token")) {
+    navigate('/posts');
+  }
+
   useEffect(() => {
     console.log('Checking server status...');
     const checkServerStatus = async () => {
