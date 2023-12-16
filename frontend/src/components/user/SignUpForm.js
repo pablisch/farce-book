@@ -6,6 +6,7 @@ const SignUpForm = ({ navigate }) => {
   const [password, setPassword] = useState('');
   const [avatar, setAvatar] = useState(null);
   const [errors, setErrors] = useState([]);
+  window.localStorage.clear();
   window.localStorage.setItem("app-route", "signup")
   const renderUrl = require('../../renderUrl');
 

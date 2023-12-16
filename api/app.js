@@ -16,46 +16,26 @@ app.use(express.json())
 app.use(logger("dev"));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Below is code that made it possible to pass CORS policy when creating a post
-app.options('/posts', (req, res) => {
-  // Set the appropriate CORS headers for the preflight request
+// Define a middleware function for CORS headers
+const handleCors = (req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-  res.sendStatus(200); // Send a 200 OK response
-});
-
-// Below is code that made it possible to pass CORS policy when creating a message
-app.options('/posts/:id', (req, res) => {
-  // Set the appropriate CORS headers for the preflight request
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-  res.sendStatus(200); // Send a 200 OK response
-});
-
-// Below is code that made it possible to pass CORS policy when checking server status
-app.options('/health', (req, res) => {
-  // Set the appropriate CORS headers for the preflight request
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-  res.sendStatus(200); // Send a 200 OK response
-});
-
-// Added CORS policy
-app.use((req, res, next) => { // call the use method, which adds a middleware function to the middleware stack
-  // set the response header to allow all origins
-  res.setHeader('Access-Control-Allow-Origin', '*'); 
-  // res.setHeader('Access-Control-Allow-Origin', 'https://farcebook-9uwa.onrender.com');
-  // res.setHeader('Access-Control-Allow-Origin', 'https://farcebook-9uwa.onrender.com/');
-  // set the response header to allow the following headers
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization'); 
-  // set the response header to allow the following methods
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-  // call the next function which will be executed in the middleware stack
   next();
+};
+
+// Use the CORS middleware for specific routes
+app.options('/posts', handleCors, (req, res) => {
+  res.sendStatus(200);
 });
+
+app.options('/posts/:id', handleCors, (req, res) => {
+  res.sendStatus(200);
+});
+
+// Use the CORS middleware for all routes
+app.use(handleCors);
+
 
 // avatars is the URL path to access the avatars folder
 //display the images in the avatars folder
