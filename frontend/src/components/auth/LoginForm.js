@@ -6,7 +6,8 @@ const renderUrl = require('../../renderUrl');
 const LogInForm = ({ navigate }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  window.localStorage.setItem("app-route", "login")
+  window.localStorage.clear();
+  window.localStorage.setItem("app-route", "login");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
