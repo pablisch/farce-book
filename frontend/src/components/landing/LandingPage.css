@@ -1,0 +1,93 @@
+.login-form {
+    /* width: 100%; */
+    max-width: 500px;
+    margin: 50px auto 0;
+    padding: 40px;
+    border: 1px solid #aaa;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 3 4 10px rgba(0,0,0,0.6);   
+}
+
+.login-form label {
+  font-family: 'Raleway';
+    font-size: 1.2rem;
+}
+
+.login-form input {
+  font-family: 'Raleway';
+  width: 100%;
+  font-size: 1.1rem;
+  margin: 10px 0 10px;
+  padding: 5px 10px;
+  border: 1px solid #aaa;
+  border-radius: 5px; 
+  font-size: 1.2rem;
+}
+
+.login-form .submit {
+  margin: 15px 0 10px; 
+  font-weight: bold;
+  color: #444;
+  background-color: #fdd45a;
+  text-align: center;
+  cursor: pointer;  
+}
+
+.login-form .submit:hover {
+  background-color: #1e5cbf;
+  color: #fff;
+}
+
+.login-form #error-message {
+  color: red;
+  text-align: center;
+}
+
+.login-form #li {
+  color: #1e5cbf;
+}
+  
+.login-title {
+  font-family: 'Raleway';
+  font-size: 2.4rem;
+  font-weight: bold;
+  margin: 0 0 20px;
+  color: #154ba1;
+}
+
+.title-container {
+  text-align: center;
+}
+
+.notice {
+  /* width: 100%; */
+  max-width: 500px;
+  margin: 40px auto 0;
+  padding: 30px;
+  border: 2px solid #898989;
+  border-radius: 15px;
+  background: #fccece;
+  box-shadow: 3 4 10px rgba(0,0,0,0.6);   
+}
+
+.notice p {
+  margin-bottom: 10px;
+}
+
+#server-coutdown {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.login-form .waiting-for-server {
+  color: #ffffff;
+  background-color: #626262;
+  font-size: 1rem;
+}
+
+.login-form .waiting-for-server:hover {
+  color: #ffffff;
+  background-color: #626262;
+  cursor: not-allowed;
+}

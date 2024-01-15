@@ -65,3 +65,6 @@ typings/
 # cypress.io
 cypress/screenshots
 cypress/videos
+
+# mongodb URI
+mongoUri.js

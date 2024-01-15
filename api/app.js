@@ -8,14 +8,36 @@ const postsRouter = require("./routes/posts");
 const tokensRouter = require("./routes/tokens");
 const usersRouter = require("./routes/users");
 
+const corsOrigin = process.env.CORS_ORIGIN || "https://farcebook-9uwa.onrender.com"
+
 const app = express();
 
 // setup for receiving JSON
 app.use(express.json())
 
 app.use(logger("dev"));
-app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
+
+// Define a middleware function for CORS headers
+const handleCors = (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', corsOrigin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  next();
+};
+
+// Use the CORS middleware for specific routes
+app.options('/posts', handleCors, (req, res) => {
+  res.sendStatus(200);
+});
+
+app.options('/posts/:id', handleCors, (req, res) => {
+  res.sendStatus(200);
+});
+
+// Use the CORS middleware for all routes
+app.use(handleCors);
+
 
 // avatars is the URL path to access the avatars folder
 //display the images in the avatars folder
@@ -44,6 +66,9 @@ const tokenChecker = (req, res, next) => {
 };
 
 // route setup
+app.get('/health', (req, res) => {
+  res.status(200).send('Server is up and running.');
+});
 app.use("/posts", tokenChecker, postsRouter);
 app.use("/tokens", tokensRouter);
 app.use("/users", usersRouter);

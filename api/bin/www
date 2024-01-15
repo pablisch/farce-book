@@ -3,6 +3,9 @@
 /**
  * Module dependencies.
  */
+// comment out the line below if there is no mongoUri.js file and a local database connection is being used
+// const MONGODB_URL = require('../mongoUri')
+
 
 var app = require("../app");
 var debug = require("debug")("acebook:server");
@@ -19,8 +22,10 @@ app.set("port", port);
 /**
  * Connect to MongoDB
  **/
-
-var mongoDbUrl = process.env.MONGODB_URL || "mongodb://0.0.0.0/acebook";
+const dbUser = process.env.DB_USER;
+const dbPassword = process.env.DB_PW;
+const dbName = process.env.DB_NAME || 'farcebook';
+var mongoDbUrl = `mongodb+srv://${dbUser}:${dbPassword}@cluster0.8rfjmug.mongodb.net/${dbName}?retryWrites=true&w=majority`;
 mongoose.connect(mongoDbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
