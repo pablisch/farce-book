@@ -8,6 +8,8 @@ const postsRouter = require("./routes/posts");
 const tokensRouter = require("./routes/tokens");
 const usersRouter = require("./routes/users");
 
+const corsOrigin = process.env.CORS_ORIGIN || "https://farcebook-9uwa.onrender.com"
+
 const app = express();
 
 // setup for receiving JSON
@@ -18,7 +20,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Define a middleware function for CORS headers
 const handleCors = (req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', corsOrigin);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
   next();

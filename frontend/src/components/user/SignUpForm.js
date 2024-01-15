@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import baseUrl from '../../baseUrl';
 
 const SignUpForm = ({ navigate }) => {
   const [email, setEmail] = useState('');
@@ -7,14 +8,13 @@ const SignUpForm = ({ navigate }) => {
   const [avatar, setAvatar] = useState(null);
   const [errors, setErrors] = useState([]);
   window.localStorage.clear();
-  window.localStorage.setItem("app-route", "signup")
-  const renderUrl = require('../../renderUrl');
+  window.localStorage.setItem('app-route', 'signup');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     //need to change this to use fetch with the avatar
-    //image do not uppload with JSon. 
+    //image do not uppload with JSon.
     const formData = new FormData();
     formData.append('email', email);
     formData.append('username', username);
@@ -23,7 +23,7 @@ const SignUpForm = ({ navigate }) => {
       formData.append('avatar', avatar);
     }
 
-    fetch(`${renderUrl}/users`, {
+    fetch(`${baseUrl}/users`, {
       method: 'POST',
       body: formData,
     })
@@ -72,35 +72,51 @@ const SignUpForm = ({ navigate }) => {
         <h1 className='login-title'>Farcebook Sign Up</h1>
       </div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Enter an email address: </label>
-          <input placeholder="Email" id="email" type='text' value={ email } onChange={handleEmailChange} /> <br />
+        <label htmlFor='email'>Enter an email address: </label>
+        <input
+          placeholder='Email'
+          id='email'
+          type='text'
+          value={email}
+          onChange={handleEmailChange}
+        />{' '}
+        <br />
         <br></br>
-
-        <label htmlFor="username">Enter username: </label>
-          <input placeholder="Username" id="username" type='text' value={ username } onChange={handleUsernameChange} />
-            <small>
-              <li id="li">Must be between 5 to 15 characters.</li>
-            </small>
+        <label htmlFor='username'>Enter username: </label>
+        <input
+          placeholder='Username'
+          id='username'
+          type='text'
+          value={username}
+          onChange={handleUsernameChange}
+        />
+        <small>
+          <li id='li'>Must be between 5 to 15 characters.</li>
+        </small>
         <br></br>
-
-        <label htmlFor="password">Enter a password: </label> <br />
-          <input placeholder="Password" id="password" type="password" value={ password } onChange={handlePasswordChange} />
-            <small>
-              <li id="li">Must be between 8 to 20 characters.</li> 
-              <li id="li">Requires one uppercase, one lowercase, and one number.</li>
-            </small>
-          <br></br>
-
-          <label htmlFor='avatar'>Avatar (optional):</label>
-          <input id='avatar' type='file' onChange={handleAvatarChange} />
-
-          <br></br>
-
-          <div id="error-message">{errors}</div>
-        <input id='submit' type="submit" value="Submit" />
+        <label htmlFor='password'>Enter a password: </label> <br />
+        <input
+          placeholder='Password'
+          id='password'
+          type='password'
+          value={password}
+          onChange={handlePasswordChange}
+        />
+        <small>
+          <li id='li'>Must be between 8 to 20 characters.</li>
+          <li id='li'>
+            Requires one uppercase, one lowercase, and one number.
+          </li>
+        </small>
+        <br></br>
+        <label htmlFor='avatar'>Avatar (optional):</label>
+        <input id='avatar' type='file' onChange={handleAvatarChange} />
+        <br></br>
+        <div id='error-message'>{errors}</div>
+        <input id='submit' type='submit' value='Submit' />
       </form>
     </div>
   );
-}
+};
 
 export default SignUpForm;
