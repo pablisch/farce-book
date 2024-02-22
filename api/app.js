@@ -8,8 +8,7 @@ const postsRouter = require("./routes/posts");
 const tokensRouter = require("./routes/tokens");
 const usersRouter = require("./routes/users");
 
-const corsOrigin = process.env.CORS_ORIGIN || "*"
-// const corsOrigin = process.env.CORS_ORIGIN || "https://farcebook-9uwa.onrender.com"
+const corsOrigin = process.env.CORS_ORIGIN || "https://farcebook-9uwa.onrender.com"
 
 const app = express();
 
@@ -37,7 +36,8 @@ app.options('/posts/:id', handleCors, (req, res) => {
 });
 
 // Use the CORS middleware for all routes
-app.use(handleCors);
+// app.use(handleCors);
+app.use(cors());
 
 
 // avatars is the URL path to access the avatars folder
