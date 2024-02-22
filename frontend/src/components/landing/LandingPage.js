@@ -16,6 +16,10 @@ const LogInForm = ({ navigate }) => {
 
   useEffect(() => {
     console.log('Checking server status...');
+    if (isServerUp) {
+      console.log('Server is up');
+      return () => clearInterval(intervalId);
+    }
   
     const checkServerStatus = async () => {
       try {
@@ -39,7 +43,7 @@ const LogInForm = ({ navigate }) => {
     return () => clearInterval(intervalId);
   
     checkServerStatus();
-  }, []);  
+  }, [isServerUp]);  
   
 
   const handleSubmit = async (event) => {
