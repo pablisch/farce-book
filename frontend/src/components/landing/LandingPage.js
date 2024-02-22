@@ -16,6 +16,7 @@ const LogInForm = ({ navigate }) => {
 
   useEffect(() => {
     console.log('Checking server status...');
+    console.log('nodeEnv', process.env.NODE_ENV);
     console.log('baseUrl', baseUrl);
     const checkServerStatus = async () => {
       try {
