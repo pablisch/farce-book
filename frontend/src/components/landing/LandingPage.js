@@ -16,8 +16,8 @@ const LogInForm = ({ navigate }) => {
 
   useEffect(() => {
     console.log('Checking server status...');
-    console.log('nodeEnv', process.env.NODE_ENV);
-    console.log('baseUrl', baseUrl);
+    // console.log('nodeEnv', process.env.NODE_ENV);
+    // console.log('baseUrl', baseUrl);
     const checkServerStatus = async () => {
       try {
         const response = await fetch(`${baseUrl}/health`);
@@ -31,12 +31,14 @@ const LogInForm = ({ navigate }) => {
       }
     };
 
-    // Check server status when component is mounted
     checkServerStatus();
 
-    // Optionally, you can set up an interval to periodically check the server status
+    if (isServerUp) {
+      return () => clearInterval(intervalId);
+    }
+
     const intervalId = setInterval(() => {
-      checkServerStatus(); // check server status every x seconds
+      checkServerStatus(); 
       setCounter((counter) => counter - 1);
       console.log('time for server to spin up');
     }, 1000);
@@ -45,7 +47,7 @@ const LogInForm = ({ navigate }) => {
       clearInterval(intervalId);
     }
 
-    return () => clearInterval(intervalId); // Clear interval when component unmounts
+    return () => clearInterval(intervalId); 
   }, []);
 
   const handleSubmit = async (event) => {
@@ -110,7 +112,6 @@ const LogInForm = ({ navigate }) => {
           <p id='error-message'></p>
           {(isServerUp || counter > expectedServerSpinUpTime - 1) && (
             <input
-              role='submit-button'
               className='submit'
               type='submit'
               value='Submit'
@@ -118,7 +119,6 @@ const LogInForm = ({ navigate }) => {
           )}
           {!isServerUp && counter <= expectedServerSpinUpTime - 1 && (
             <input
-              role='submit-button'
               className='submit waiting-for-server'
               type='submit'
               value='Waiting for the server - Please be patient'
