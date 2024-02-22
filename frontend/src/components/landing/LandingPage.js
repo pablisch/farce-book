@@ -16,8 +16,7 @@ const LogInForm = ({ navigate }) => {
 
   useEffect(() => {
     console.log('Checking server status...');
-    // console.log('nodeEnv', process.env.NODE_ENV);
-    // console.log('baseUrl', baseUrl);
+  
     const checkServerStatus = async () => {
       try {
         const response = await fetch(`${baseUrl}/health`);
@@ -30,25 +29,18 @@ const LogInForm = ({ navigate }) => {
         setIsServerUp(false);
       }
     };
-
-    checkServerStatus();
-
-    if (isServerUp) {
-      return () => clearInterval(intervalId);
-    }
-
+  
     const intervalId = setInterval(() => {
-      checkServerStatus(); 
+      checkServerStatus();
       setCounter((counter) => counter - 1);
       console.log('time for server to spin up');
     }, 1000);
-
-    if (isServerUp) {
-      clearInterval(intervalId);
-    }
-
-    return () => clearInterval(intervalId); 
-  }, []);
+  
+    return () => clearInterval(intervalId);
+  
+    checkServerStatus();
+  }, []);  
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
