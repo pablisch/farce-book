@@ -8,7 +8,8 @@ const postsRouter = require("./routes/posts");
 const tokensRouter = require("./routes/tokens");
 const usersRouter = require("./routes/users");
 
-const corsOrigin = process.env.CORS_ORIGIN || "https://farcebook-9uwa.onrender.com"
+const corsOrigin = process.env.CORS_ORIGIN || "*"
+// const corsOrigin = process.env.CORS_ORIGIN || "https://farcebook-9uwa.onrender.com"
 
 const app = express();
 
