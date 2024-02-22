@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Define a middleware function for CORS headers
 const handleCors = (req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', corsOrigin);
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
   next();
@@ -36,8 +36,7 @@ app.options('/posts/:id', handleCors, (req, res) => {
 });
 
 // Use the CORS middleware for all routes
-// app.use(handleCors);
-app.use(cors());
+app.use(handleCors);
 
 
 // avatars is the URL path to access the avatars folder
