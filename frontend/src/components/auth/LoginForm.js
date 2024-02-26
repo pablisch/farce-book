@@ -68,7 +68,7 @@ const LogInForm = ({ navigate }) => {
         />{' '}
         <br />
         <p id='error-message'></p>
-        <input role='submit-button' id='submit' type='submit' value='Submit' />
+        <input id='submit' type='submit' value='Submit' />
       </form>
     </div>
   );
