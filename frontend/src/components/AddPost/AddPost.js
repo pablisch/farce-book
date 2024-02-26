@@ -52,7 +52,6 @@ const AddPost = ({ onPostAdded }) => {
         />
         <input
           className='input-button'
-          role='submit-button'
           id='submit'
           type='submit'
           value='Add New Post'

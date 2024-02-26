@@ -30,10 +30,11 @@ From the Makers Academy brief:
 
 This assumes that you have Node.js and MongoDB installed on your machine. If not, see the [Installing and Running the Application](#installing-and-running-the-application) section below.
 
+Environment variables are used to store the JWT secret and the MongoDB URI. Without these details you will not be able to run this app locally.
+You can however, set up your own MongoDB Atlas and alter the URI accordingly.
+
 1. Clone this repository to your local machine.
-2. Start the MongoDB server, `mongod`.
-**Note:** If you see a message that says `If you need to have mongodb-community@6.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
-**Note:** If the server will not start, you may need to run `brew services start mongodb-community@6.0` in a new terminal window.
+2. Create a `.env` file in the `api` directory with the following content:
 3. ONLY if you wish to run tests, create the MongoDB test database and its collections (the main 'acebook' DB will be created automatically when the application is used):
 ```
 mongosh

@@ -44,7 +44,7 @@ const LogInForm = ({ navigate }) => {
   };
 
   return (
-    <div className='login-form'>
+    <div id='login-form' className='login-form'>
       <div className='title-container'>
         <h1 className='login-title'>Log in to Farcebook</h1>
       </div>

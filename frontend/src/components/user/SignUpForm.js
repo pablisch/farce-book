@@ -67,7 +67,7 @@ const SignUpForm = ({ navigate }) => {
   };
 
   return (
-    <div className='login-form'>
+    <div id='signup-form' className='login-form'>
       <div className='title-container'>
         <h1 className='login-title'>Farcebook Sign Up</h1>
       </div>

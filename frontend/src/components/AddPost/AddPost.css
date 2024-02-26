@@ -18,3 +18,12 @@
   color: #444;
 }
 
+@media (max-width: 930px) {
+  #message {
+    margin: 30px 30px 15px;
+    width: calc(100% - 60px);
+  }
+  #submit {
+    margin: 0 30px 15px;
+  }
+}

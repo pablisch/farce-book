@@ -114,3 +114,22 @@ nav:hover #logo {
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 930px) {
+  .nav-left {
+    margin-left: 30px;
+  }
+  .nav-right {
+    margin-right: 30px;
+  }
+  .display-user p {
+    display: none;
+  }
+}
+
+@media (max-width: 570px) {
+  .book {
+    display: none;
+  }
+}
+

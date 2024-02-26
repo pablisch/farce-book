@@ -48,3 +48,23 @@
   justify-content: space-between;
 }
 
+@media (max-width: 930px) {
+  .postbox {
+    margin-left: 30px;
+    margin-right: 30px;
+    width: calc(100% - 60px);
+  }
+}
+
+@media (max-width: 736px) {
+  .add-comment {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 572px) {
+  #submit-comment {
+    margin-top: 10px;
+  }
+}
+
