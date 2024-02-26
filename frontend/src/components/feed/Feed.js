@@ -7,6 +7,7 @@ import baseUrl from '../../baseUrl';
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem('token'));
+  console.log('token is ', token);
   const [postCount, setPostCount] = useState(0);
   window.localStorage.setItem('app-route', 'feed');
 
@@ -23,7 +24,7 @@ const Feed = ({ navigate }) => {
   useEffect(() => {
     if (token) {
       console.log('token in fetch is ', token);
-      // fetch("/posts", {
+
       fetch(`${baseUrl}/posts`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -31,6 +32,10 @@ const Feed = ({ navigate }) => {
       })
         .then((response) => response.json())
         .then(async (data) => {
+          console.log('data is ', data);
+          if (data.message === 'auth error') {
+            navigate('/login');
+          }
           window.localStorage.setItem('token', data.token);
           console.log(data);
           setToken(window.localStorage.getItem('token'));
@@ -43,6 +48,7 @@ const Feed = ({ navigate }) => {
         })
         .catch((error) => {
           // Handle fetch error
+          console.log('in catch, error is ', error);
           console.error(error);
         });
     } else {
